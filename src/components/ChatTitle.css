@@ -1,0 +1,17 @@
+.div {
+    margin-left: auto;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+
+}
+
+.div:hover {
+    border: 1px solid #52b2b2;
+    cursor: pointer;
+}

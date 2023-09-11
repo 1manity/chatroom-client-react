@@ -1,11 +1,12 @@
-import {Box, Grid,Button,Card,CardContent} from '@mui/material';
+import {Box, Grid, Button, Card, CardContent} from '@mui/material';
 import {styled} from '@mui/material/styles';
 import {Typography} from '@mui/material';
 import ChatList from "./ChatList";
 import "./ChatRoom.css";
 import {useState} from 'react';
 import SendIcon from '@mui/icons-material/Send';
-export default function ChatInput({value,setValue,sendMessage}) {
+
+export default function ChatInput({value, setValue, sendMessage}) {
     return (
         <Box flex={"1"} sx={{
             border: "1px solid #dedede",
@@ -19,18 +20,25 @@ export default function ChatInput({value,setValue,sendMessage}) {
             <Box sx={{
                 border: "1px solid #dedede",
                 borderRadius: '20px',
-                height:"100%",
-                width:"100%",
+                height: "100%",
+                width: "100%",
                 padding: "15px",
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'flex-end'
+                alignItems: 'flex-end',
+                ":focus-within": {
+                    borderColor: "#52b2b2"
+                }
             }}>
-                                    <textarea flex={8} className={"input"}
-                                              value={value}
-                                              onChange={(e) => setValue(e.target.value)}>
-                                    </textarea>
-                <Button onClick={()=>sendMessage(value)} endIcon={<SendIcon />} flex={1} sx={{
+                <textarea flex={8} className={"input"}
+                          value={value}
+                          onChange={(e) => setValue(e.target.value)}>
+                </textarea>
+                <Button
+                    onClick={() => {
+                        sendMessage(value);setValue("");}
+                    }
+                    endIcon={<SendIcon/>} flex={1} sx={{
                     minWidth: "50px", /* 宽度 */
                     height: "35px", /* 高度 */
                     borderWidth: "0px", /* 边框宽度 */
@@ -38,7 +46,7 @@ export default function ChatInput({value,setValue,sendMessage}) {
                     background: "#86c8d1", /* 背景颜色 */
                     cursor: "pointer", /* 鼠标移入按钮范围时出现手势 */
                     outline: "none", /* 不显示轮廓线 */
-                    fontFamily: "Roboto, serif" , /* 设置字体 */
+                    fontFamily: "Roboto, serif", /* 设置字体 */
                     color: "white", /* 字体颜色 */
                     fontSize: "13px", /* 字体大小 */
                     fontWeight: "bold",
@@ -47,7 +55,6 @@ export default function ChatInput({value,setValue,sendMessage}) {
                     }
                 }}>send</Button>
             </Box>
-
 
 
         </Box>

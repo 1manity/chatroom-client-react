@@ -43,7 +43,7 @@ function ChatListItem() {
 
     return (
         <Box sx={{
-            border: "2px solid black",
+            border: "2px solid #36a9ad",
             borderRadius: "10px",
 
             height: "70px",
@@ -52,6 +52,11 @@ function ChatListItem() {
             // display:"flex",
             // justifyContent: "center",
             // alignItems: "center"
+            "-webkit-transition": "all .3s",
+            ":hover": {
+                backgroundColor: "#e7e7e7",
+                cursor: "pointer",
+            }
         }}>
 
 

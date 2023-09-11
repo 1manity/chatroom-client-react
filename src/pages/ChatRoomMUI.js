@@ -22,6 +22,8 @@ function ChatRoomMUI() {
     const socketRef = useRef(null);
     const [chatInputValue, setChatInputValue] = useState('');
     const [messages, setMessages] = useState([]);
+    const [username, setUsername] = useState(window.localStorage.getItem('username') || '');
+
 
     const sendMessage = (newMessage) => {
         if (newMessage.trim() === '') {
@@ -31,11 +33,16 @@ function ChatRoomMUI() {
         const message = {
             type: "chat",
             content: newMessage,
-            sender:"",
+            sender:username,
             timestamp:Math.floor(Date.now())
         };
         socketRef.current.send(JSON.stringify(message));
     };
+
+    useEffect(() => {
+        window.localStorage.setItem('username', username);
+    }, [username]);
+
     useEffect(()=>{
         socketRef.current=new WebSocket('ws://127.0.0.1:33459/ws')
         console.log(socketRef.current)
@@ -105,9 +112,9 @@ function ChatRoomMUI() {
                     <Grid item xs={9}>
                         <Box display="flex" flexDirection="column" height="100%">
 
-                            <ChatTitle/>
+                            <ChatTitle username={username} setUsername={setUsername}/>
                             {/* 消息列表 */}
-                            <ChatContent messages={messages}/>
+                            <ChatContent messages={messages} username={username}/>
                             <ChatInput value={chatInputValue} setValue={setChatInputValue} sendMessage={sendMessage}/>
                             {/* 输入框 */}
 
